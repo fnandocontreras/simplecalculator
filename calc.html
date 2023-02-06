@@ -1,0 +1,108 @@
+<Html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        button {
+            font-size: 50px;
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Super Calculator</h1>
+
+        <div class="row">
+            <div class="col-12">
+                <h1 id="display" style="font-size: 200px;">_ </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <button id="num-1">1</button>
+                        <button id="num-2">2</button>
+                        <button id="num-3">3</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="num-4">4</button>
+                        <button id="num-5">5</button>
+                        <button id="num-6">6</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="num-7">7</button>
+                        <button id="num-8">8</button>
+                        <button id="num-9">9</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="num-0">0</button>
+                        <button id="btn-calc">=</button>
+                        <button id="btn-reset">C</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="row">
+                    <div class="col-12">
+                        <button id="operator-plus">+</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="operator-sub">-</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="operator-mul">*</button>
+                    </div>
+                    <div class="col-12">
+                        <button id="operator-div">/</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <script>
+            let operand1 = "";
+            let operand2 = "";
+            let operator = "";
+
+            buttons = document.getElementsByTagName("button");
+
+            refreshView = function () {
+                display = document.getElementById("display");
+                display.textContent = operand1 + " " + operator + " " + operand2;
+            }
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', onButtonClick)
+            }
+
+            function onButtonClick(event) {
+                currentButton = event.target;
+
+                if (currentButton.id.startsWith("num")) {
+                    if (!operand1) {
+                        operand1 = parseInt(currentButton.textContent);
+                    } else if (operator) {
+                        operand2 = parseInt(currentButton.textContent);
+                    }
+                }
+                else if (currentButton.id.startsWith("operator")) {
+                    operator = currentButton.textContent;
+
+                }
+                refreshView();
+            };
+
+        </script>
+    </div>
+</body>
+
+
+
+</Html>
